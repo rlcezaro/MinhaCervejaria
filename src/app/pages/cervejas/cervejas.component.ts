@@ -28,12 +28,7 @@ import { CommonModule } from '@angular/common';
   styleUrls: ['./cervejas.component.css'],
 })
 export class CervejasComponent implements OnInit {
-  displayedColumns: string[] = [
-    'nome',
-    'fabricanteId',
-    'descricao',
-    'actions',
-  ]; // Removed 'estoqueId'
+  displayedColumns: string[] = ['nome', 'fabricanteId', 'descricao', 'actions']; // Removed 'estoqueId'
 
   cervejas: Cerveja[] = [];
   fabricantes: Fabricante[] = [];
@@ -61,7 +56,7 @@ export class CervejasComponent implements OnInit {
       estilo: '',
       teorAlcoolico: 0,
       ibu: 0,
-      descricao: '', // Removed 'estoqueId'
+      descricao: '',
     };
   }
 
