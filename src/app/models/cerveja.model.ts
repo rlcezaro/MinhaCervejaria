@@ -6,5 +6,5 @@ export interface Cerveja {
   teorAlcoolico: number;
   ibu: number;
   descricao?: string;
-  estoqueId: number; // Foreign key to Estoque
+  // Removed estoqueId
 }

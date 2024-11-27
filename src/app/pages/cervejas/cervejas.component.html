@@ -1,83 +1,63 @@
-<div class="cerveja-form">
-  <h2>Cadastro de Cerveja</h2> <!-- Added title -->
-  <form (ngSubmit)="onSubmit()">
-    <mat-form-field appearance="fill">
-      <mat-label>Nome</mat-label>
-      <input matInput [(ngModel)]="cerveja.nome" name="nome" required />
-    </mat-form-field>
-
-    <mat-form-field appearance="fill">
-      <mat-label>Fabricante</mat-label>
-      <mat-select [(ngModel)]="cerveja.fabricanteId" name="fabricanteId" required>
-        <mat-option *ngFor="let fabricante of fabricantes" [value]="fabricante.id">
-          {{ fabricante.nome }}
-        </mat-option>
-      </mat-select>
-    </mat-form-field>
-
-    <mat-form-field appearance="fill">
-      <mat-label>Estoque ID</mat-label>
-      <input matInput [(ngModel)]="cerveja.estoqueId" name="estoqueId" required />
-    </mat-form-field>
-
-    <mat-form-field appearance="fill">
-      <mat-label>Estilo</mat-label>
-      <input matInput [(ngModel)]="cerveja.estilo" name="estilo" required />
-    </mat-form-field>
-
-    <mat-form-field appearance="fill">
-      <mat-label>Teor Alcoólico</mat-label>
-      <input matInput type="number" [(ngModel)]="cerveja.teorAlcoolico" name="teorAlcoolico" required />
-    </mat-form-field>
-
-    <mat-form-field appearance="fill">
-      <mat-label>IBU</mat-label>
-      <input matInput type="number" [(ngModel)]="cerveja.ibu" name="ibu" required />
-    </mat-form-field>
-
-    <mat-form-field appearance="fill">
-      <mat-label>Descrição</mat-label>
-      <input matInput [(ngModel)]="cerveja.descricao" name="descricao" required />
-    </mat-form-field>
-
-    <button mat-raised-button color="primary" type="submit">
-      Adicionar Cerveja
-    </button>
+<div class="cervejas-container">
+  <h1>Cervejas</h1>
+  <form (ngSubmit)="addCerveja()">
+    <div class="form-container">
+      <div class="form-group">
+        <label for="nome">Nome:</label>
+        <input type="text" id="nome" [(ngModel)]="cerveja.nome" name="nome" required />
+      </div>
+      <div class="form-group">
+        <label for="fabricanteId">Fabricante ID:</label>
+        <input type="number" id="fabricanteId" [(ngModel)]="cerveja.fabricanteId" name="fabricanteId" required />
+      </div>
+      <div class="form-group">
+        <label for="estilo">Estilo:</label>
+        <input type="text" id="estilo" [(ngModel)]="cerveja.estilo" name="estilo" required />
+      </div>
+      <div class="form-group">
+        <label for="teorAlcoolico">Teor Alcoólico:</label>
+        <input type="number" id="teorAlcoolico" [(ngModel)]="cerveja.teorAlcoolico" name="teorAlcoolico" required />
+      </div>
+      <div class="form-group">
+        <label for="ibu">IBU:</label>
+        <input type="number" id="ibu" [(ngModel)]="cerveja.ibu" name="ibu" required />
+      </div>
+      <div class="form-group">
+        <label for="descricao">Descrição:</label>
+        <input type="text" id="descricao" [(ngModel)]="cerveja.descricao" name="descricao" required />
+      </div>
+      <div class="form-buttons">
+        <button type="submit">Adicionar Cerveja</button>
+        <button type="button" (click)="updateCerveja()">Atualizar Cerveja</button>
+      </div>
+    </div>
   </form>
-</div>
 
-<div class="cerveja-list">
-  <h2>Lista de Cervejas</h2> <!-- Added title -->
-  <table mat-table [dataSource]="cervejas" class="mat-elevation-z8">
-    <ng-container matColumnDef="nome">
-      <th mat-header-cell *matHeaderCellDef> Nome </th>
-      <td mat-cell *matCellDef="let cerveja"> {{ cerveja.nome }} </td>
-    </ng-container>
-
-    <ng-container matColumnDef="fabricanteId">
-      <th mat-header-cell *matHeaderCellDef> Fabricante </th>
-      <td mat-cell *matCellDef="let cerveja"> {{ getFabricanteNome(cerveja.fabricanteId) }} </td>
-    </ng-container>
-
-    <ng-container matColumnDef="estoqueId">
-      <th mat-header-cell *matHeaderCellDef> Estoque ID </th>
-      <td mat-cell *matCellDef="let cerveja"> {{ cerveja.estoqueId }} </td>
-    </ng-container>
-
-    <ng-container matColumnDef="descricao">
-      <th mat-header-cell *matHeaderCellDef> Descrição </th>
-      <td mat-cell *matCellDef="let cerveja"> {{ cerveja.descricao }} </td>
-    </ng-container>
-
-    <ng-container matColumnDef="actions">
-      <th mat-header-cell *matHeaderCellDef> Ações </th>
-      <td mat-cell *matCellDef="let cerveja">
-        <button mat-button (click)="editCerveja(cerveja)">Editar</button>
-        <button mat-button (click)="deleteCerveja(cerveja.id)">Deletar</button>
-      </td>
-    </ng-container>
-
-    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  <table class="table table-responsive">
+    <thead>
+      <tr>
+        <th>Nome</th>
+        <th>Fabricante ID</th>
+        <th>Estilo</th>
+        <th>Teor Alcoólico</th>
+        <th>IBU</th>
+        <th>Descrição</th>
+        <th>Ações</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let cerveja of cervejas">
+        <td>{{ cerveja.nome }}</td>
+        <td>{{ cerveja.fabricanteId }}</td>
+        <td>{{ cerveja.estilo }}</td>
+        <td>{{ cerveja.teorAlcoolico }}</td>
+        <td>{{ cerveja.ibu }}</td>
+        <td>{{ cerveja.descricao }}</td>
+        <td>
+          <button (click)="editCerveja(cerveja)">Editar</button>
+          <button (click)="deleteCerveja(cerveja.id)">Deletar</button>
+        </td>
+      </tr>
+    </tbody>
   </table>
 </div>

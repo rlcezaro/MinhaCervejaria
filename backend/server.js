@@ -63,9 +63,7 @@ db.serialize(() => {
     teorAlcoolico REAL,
     ibu INTEGER,
     descricao TEXT,
-    estoqueId INTEGER,
-    FOREIGN KEY(fabricanteId) REFERENCES fabricantes(id),
-    FOREIGN KEY(estoqueId) REFERENCES estoques(id)
+    FOREIGN KEY(fabricanteId) REFERENCES fabricantes(id)
   )`);
 
   db.run(`CREATE TABLE IF NOT EXISTS vendas (
@@ -90,12 +88,11 @@ app.post("/api/cervejas", (req, res) => {
     estilo,
     teorAlcoolico,
     ibu,
-    descricao,
-    estoqueId,
+    descricao
   } = req.body;
   db.run(
-    "INSERT INTO cervejas (nome, fabricanteId, estilo, teorAlcoolico, ibu, descricao, estoqueId) VALUES (?, ?, ?, ?, ?, ?, ?)",
-    [nome, fabricanteId, estilo, teorAlcoolico, ibu, descricao, estoqueId],
+    "INSERT INTO cervejas (nome, fabricanteId, estilo, teorAlcoolico, ibu, descricao) VALUES (?, ?, ?, ?, ?, ?)",
+    [nome, fabricanteId, estilo, teorAlcoolico, ibu, descricao],
     function (err) {
       if (err) {
         return res.status(500).send(err.message);
@@ -124,12 +121,11 @@ app.put("/api/cervejas/:id", (req, res) => {
     estilo,
     teorAlcoolico,
     ibu,
-    descricao,
-    estoqueId,
+    descricao
   } = req.body;
   db.run(
-    "UPDATE cervejas SET nome = ?, fabricanteId = ?, estilo = ?, teorAlcoolico = ?, ibu = ?, descricao = ?, estoqueId = ? WHERE id = ?",
-    [nome, fabricanteId, estilo, teorAlcoolico, ibu, descricao, estoqueId, id],
+    "UPDATE cervejas SET nome = ?, fabricanteId = ?, estilo = ?, teorAlcoolico = ?, ibu = ?, descricao = ? WHERE id = ?",
+    [nome, fabricanteId, estilo, teorAlcoolico, ibu, descricao, id],
     function (err) {
       if (err) {
         return res.status(500).send(err.message);
