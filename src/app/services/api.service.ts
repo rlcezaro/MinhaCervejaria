@@ -1,6 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { Cerveja } from '../models/cerveja.model';
+import { Fabricante } from '../models/fabricante.models';
+import { Cliente } from '../models/cliente.models';
 
 @Injectable({
   providedIn: 'root',
@@ -10,24 +13,52 @@ export class ApiService {
 
   constructor(private http: HttpClient) {}
 
-  addCerveja(cerveja: any): Observable<any> {
-    return this.http.post(`${this.baseUrl}/cervejas`, cerveja);
+  addCerveja(cerveja: Cerveja): Observable<Cerveja> {
+    return this.http.post<Cerveja>(`${this.baseUrl}/cervejas`, cerveja);
   }
 
-  getCervejas(): Observable<any> {
-    return this.http.get(`${this.baseUrl}/cervejas`);
+  getCervejas(): Observable<Cerveja[]> {
+    return this.http.get<Cerveja[]>(`${this.baseUrl}/cervejas`);
   }
 
-  getCervejaById(id: string): Observable<any> {
-    return this.http.get(`${this.baseUrl}/cervejas/${id}`);
+  getCervejaById(id: string): Observable<Cerveja> {
+    return this.http.get<Cerveja>(`${this.baseUrl}/cervejas/${id}`);
   }
 
-  updateCerveja(id: string, cerveja: any): Observable<any> {
-    return this.http.put(`${this.baseUrl}/cervejas/${id}`, cerveja);
+  updateCerveja(id: string, cerveja: Cerveja): Observable<Cerveja> {
+    return this.http.put<Cerveja>(`${this.baseUrl}/cervejas/${id}`, cerveja);
   }
 
-  deleteCerveja(id: string): Observable<any> {
-    return this.http.delete(`${this.baseUrl}/cervejas/${id}`);
+  deleteCerveja(id: string): Observable<void> {
+    return this.http.delete<void>(`${this.baseUrl}/cervejas/${id}`);
+  }
+
+  getFabricantes(): Observable<Fabricante[]> {
+    return this.http.get<Fabricante[]>(`${this.baseUrl}/fabricantes`);
+  }
+
+  getEstoques(): Observable<any[]> {
+    return this.http.get<any[]>(`${this.baseUrl}/estoque`);
+  }
+
+  addCliente(cliente: Cliente): Observable<Cliente> {
+    return this.http.post<Cliente>(`${this.baseUrl}/clientes`, cliente);
+  }
+
+  getClientes(): Observable<Cliente[]> {
+    return this.http.get<Cliente[]>(`${this.baseUrl}/clientes`);
+  }
+
+  getClienteById(id: number): Observable<Cliente> {
+    return this.http.get<Cliente>(`${this.baseUrl}/clientes/${id}`);
+  }
+
+  updateCliente(id: number, cliente: Cliente): Observable<Cliente> {
+    return this.http.put<Cliente>(`${this.baseUrl}/clientes/${id}`, cliente);
+  }
+
+  deleteCliente(id: number): Observable<void> {
+    return this.http.delete<void>(`${this.baseUrl}/clientes/${id}`);
   }
 
   // Outros métodos...

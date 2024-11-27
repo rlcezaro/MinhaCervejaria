@@ -1,0 +1,50 @@
+.cerveja-form {
+  margin: 20px;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+}
+
+.cerveja-form h2 {
+  margin-bottom: 20px;
+}
+
+.cerveja-form mat-form-field {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.cerveja-list {
+  margin: 20px;
+}
+
+.cerveja-list h2 {
+  margin-bottom: 20px;
+}
+
+.cerveja-list table {
+  width: 100%;
+  margin-top: 20px;
+}
+
+.cerveja-list th, .cerveja-list td {
+  padding: 8px;
+  text-align: left;
+}
+
+.cerveja-list th {
+  background-color: #f1f1f1;
+}
+
+.cerveja-list tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.cerveja-list tr:hover {
+  background-color: #f1f1f1;
+}
+
+button {
+  margin-right: 10px;
+}

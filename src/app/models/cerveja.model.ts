@@ -1,10 +1,10 @@
 export interface Cerveja {
   id: number;
   nome: string;
-  fabricante: string;
+  fabricanteId: number; // Foreign key to Fabricante
   estilo: string;
   teorAlcoolico: number;
   ibu: number;
   descricao?: string;
-  estoque: number;
+  estoqueId: number; // Foreign key to Estoque
 }
