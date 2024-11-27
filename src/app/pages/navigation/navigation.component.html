@@ -1,10 +1,23 @@
 <mat-toolbar color="primary">
   <a mat-button routerLink="/" class="title-link">MinhaCervejaria</a>
   <span class="spacer"></span>
-  <a mat-button routerLink="/cervejas">Cervejas</a>
-  <a mat-button routerLink="/fabricantes">Fabricantes</a>
-  <a mat-button routerLink="/clientes">Clientes</a>
-  <a mat-button routerLink="/vendas">Vendas</a>
-  <a mat-button routerLink="/estoque">Estoque</a>
-  <a mat-button routerLink="/busca">Busca</a>
+  <button mat-icon-button [matMenuTriggerFor]="menu" class="menu-button">
+    <mat-icon>menu</mat-icon>
+  </button>
+  <mat-menu #menu="matMenu">
+    <button mat-menu-item routerLink="/cervejas">Cervejas</button>
+    <button mat-menu-item routerLink="/fabricantes">Fabricantes</button>
+    <button mat-menu-item routerLink="/clientes">Clientes</button>
+    <button mat-menu-item routerLink="/vendas">Vendas</button>
+    <button mat-menu-item routerLink="/estoque">Estoque</button>
+    <button mat-menu-item routerLink="/busca">Busca</button>
+  </mat-menu>
+  <nav class="nav-links">
+    <a mat-button routerLink="/cervejas">Cervejas</a>
+    <a mat-button routerLink="/fabricantes">Fabricantes</a>
+    <a mat-button routerLink="/clientes">Clientes</a>
+    <a mat-button routerLink="/vendas">Vendas</a>
+    <a mat-button routerLink="/estoque">Estoque</a>
+    <a mat-button routerLink="/busca">Busca</a>
+  </nav>
 </mat-toolbar>
