@@ -37,6 +37,18 @@ export class ApiService {
     return this.http.get<Fabricante[]>(`${this.baseUrl}/fabricantes`);
   }
 
+  addFabricante(fabricante: Fabricante): Observable<Fabricante> {
+    return this.http.post<Fabricante>(`${this.baseUrl}/fabricantes`, fabricante);
+  }
+
+  updateFabricante(id: string, fabricante: Fabricante): Observable<Fabricante> {
+    return this.http.put<Fabricante>(`${this.baseUrl}/fabricantes/${id}`, fabricante);
+  }
+
+  deleteFabricante(id: string): Observable<void> {
+    return this.http.delete<void>(`${this.baseUrl}/fabricantes/${id}`);
+  }
+
   getEstoques(): Observable<any[]> {
     return this.http.get<any[]>(`${this.baseUrl}/estoque`);
   }

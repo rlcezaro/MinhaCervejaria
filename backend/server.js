@@ -146,7 +146,7 @@ app.delete("/api/cervejas/:id", (req, res) => {
   });
 });
 
-//Rota para adicionar fabricantes
+// Rota para adicionar fabricantes
 app.post("/api/fabricantes", (req, res) => {
   const {
     nome,

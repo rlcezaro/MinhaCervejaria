@@ -1,1 +1,146 @@
-<h2>Gestão de Fabricantes</h2>
+<div class="fabricantes-container">
+  <h1>Fabricantes</h1>
+  <form (ngSubmit)="addFabricante()">
+    <div class="form-container">
+      <div class="form-group">
+        <label for="nome">Nome:</label>
+        <input
+          type="text"
+          id="nome"
+          [(ngModel)]="fabricante.nome"
+          name="nome"
+          required
+        />
+      </div>
+      <div class="form-group">
+        <label for="cnpj">CNPJ:</label>
+        <input
+          type="text"
+          id="cnpj"
+          [(ngModel)]="fabricante.cnpj"
+          name="cnpj"
+          required
+        />
+      </div>
+      <div class="form-group">
+        <label for="endereco">Endereço:</label>
+        <input
+          type="text"
+          id="endereco"
+          [(ngModel)]="fabricante.endereco"
+          name="endereco"
+          required
+        />
+      </div>
+      <div class="form-group">
+        <label for="cidade">Cidade:</label>
+        <input
+          type="text"
+          id="cidade"
+          [(ngModel)]="fabricante.cidade"
+          name="cidade"
+          required
+        />
+      </div>
+      <div class="form-group">
+        <label for="estado">Estado:</label>
+        <input
+          type="text"
+          id="estado"
+          [(ngModel)]="fabricante.estado"
+          name="estado"
+          required
+        />
+      </div>
+      <div class="form-group">
+        <label for="cep">CEP:</label>
+        <input
+          type="text"
+          id="cep"
+          [(ngModel)]="fabricante.cep"
+          name="cep"
+          required
+        />
+      </div>
+      <div class="form-group">
+        <label for="telefone">Telefone:</label>
+        <input
+          type="text"
+          id="telefone"
+          [(ngModel)]="fabricante.telefone"
+          name="telefone"
+          required
+        />
+      </div>
+      <div class="form-group">
+        <label for="email">Email:</label>
+        <input
+          type="email"
+          id="email"
+          [(ngModel)]="fabricante.email"
+          name="email"
+          required
+        />
+      </div>
+      <div class="form-group">
+        <label for="status">Status:</label>
+        <input
+          type="checkbox"
+          id="status"
+          [(ngModel)]="fabricante.status"
+          name="status"
+        />
+      </div>
+      <div class="form-group">
+        <label for="observacoes">Observações:</label>
+        <textarea
+          id="observacoes"
+          [(ngModel)]="fabricante.observacoes"
+          name="observacoes"
+        ></textarea>
+      </div>
+      <div class="form-buttons">
+        <button type="submit">Adicionar Fabricante</button>
+        <button type="button" (click)="updateFabricante()">
+          Atualizar Fabricante
+        </button>
+      </div>
+    </div>
+  </form>
+
+  <table class="table table-responsive">
+    <thead>
+      <tr>
+        <th>Nome</th>
+        <th>CNPJ</th>
+        <th>Endereço</th>
+        <th>Cidade</th>
+        <th>Estado</th>
+        <th>CEP</th>
+        <th>Telefone</th>
+        <th>Email</th>
+        <th>Status</th>
+        <th>Observações</th>
+        <th>Ações</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let fabricante of fabricantes">
+        <td>{{ fabricante.nome }}</td>
+        <td>{{ fabricante.cnpj }}</td>
+        <td>{{ fabricante.endereco }}</td>
+        <td>{{ fabricante.cidade }}</td>
+        <td>{{ fabricante.estado }}</td>
+        <td>{{ fabricante.cep }}</td>
+        <td>{{ fabricante.telefone }}</td>
+        <td>{{ fabricante.email }}</td>
+        <td>{{ fabricante.status ? "Ativo" : "Inativo" }}</td>
+        <td>{{ fabricante.observacoes }}</td>
+        <td>
+          <button (click)="editFabricante(fabricante)">Editar</button>
+          <button (click)="deleteFabricante(fabricante.id)">Deletar</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
