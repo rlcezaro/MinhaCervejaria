@@ -7,8 +7,9 @@ import { VendasComponent } from './pages/vendas/vendas.component';
 import { EstoqueComponent } from './pages/estoque/estoque.component';
 import { BuscaComponent } from './pages/busca/busca.component';
 import { NavigationComponent } from './pages/navigation/navigation.component';
+import { RelatoriosComponent } from './pages/relatorios/relatorios.component';
 
-export const routes: Routes = [  
+export const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'navigation', component: NavigationComponent },
   { path: 'cervejas', component: CervejasComponent },
@@ -17,4 +18,5 @@ export const routes: Routes = [
   { path: 'vendas', component: VendasComponent },
   { path: 'estoque', component: EstoqueComponent },
   { path: 'busca', component: BuscaComponent },
+  { path: 'relatorios', component: RelatoriosComponent },
 ];

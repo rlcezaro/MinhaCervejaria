@@ -1,42 +1,94 @@
-<div class="cervejas-container">
-  <h1>Cervejas</h1>
+<div class="container mt-5">
+  <h1 class="mb-4">Cervejas</h1>
   <form (ngSubmit)="addCerveja()">
-    <div class="form-container">
-      <div class="form-group">
-        <label for="nome">Nome:</label>
-        <input type="text" id="nome" [(ngModel)]="cerveja.nome" name="nome" required />
+    <div class="row">
+      <div class="col-md-6 mb-3">
+        <label for="nome" class="form-label">Nome:</label>
+        <input
+          type="text"
+          id="nome"
+          class="form-control"
+          [(ngModel)]="cerveja.nome"
+          name="nome"
+          required
+        />
       </div>
-      <div class="form-group">
-        <label for="fabricanteId">Fabricante:</label>
-        <select id="fabricanteId" [(ngModel)]="cerveja.fabricanteId" name="fabricanteId" required>
-          <option *ngFor="let fabricante of fabricantes" [value]="fabricante.id">{{ fabricante.nome }}</option>
+      <div class="col-md-6 mb-3">
+        <label for="fabricanteId" class="form-label">Fabricante:</label>
+        <select
+          id="fabricanteId"
+          class="form-select"
+          [(ngModel)]="cerveja.fabricanteId"
+          name="fabricanteId"
+          required
+        >
+          <option
+            *ngFor="let fabricante of fabricantes"
+            [value]="fabricante.id"
+          >
+            {{ fabricante.nome }}
+          </option>
         </select>
       </div>
-      <div class="form-group">
-        <label for="estilo">Estilo:</label>
-        <input type="text" id="estilo" [(ngModel)]="cerveja.estilo" name="estilo" required />
+      <div class="col-md-6 mb-3">
+        <label for="estilo" class="form-label">Estilo:</label>
+        <input
+          type="text"
+          id="estilo"
+          class="form-control"
+          [(ngModel)]="cerveja.estilo"
+          name="estilo"
+          required
+        />
       </div>
-      <div class="form-group">
-        <label for="teorAlcoolico">Teor Alcoólico:</label>
-        <input type="number" id="teorAlcoolico" [(ngModel)]="cerveja.teorAlcoolico" name="teorAlcoolico" required />
+      <div class="col-md-6 mb-3">
+        <label for="teorAlcoolico" class="form-label">Teor Alcoólico:</label>
+        <input
+          type="number"
+          id="teorAlcoolico"
+          class="form-control"
+          [(ngModel)]="cerveja.teorAlcoolico"
+          name="teorAlcoolico"
+          required
+        />
       </div>
-      <div class="form-group">
-        <label for="ibu">IBU:</label>
-        <input type="number" id="ibu" [(ngModel)]="cerveja.ibu" name="ibu" required />
+      <div class="col-md-6 mb-3">
+        <label for="ibu" class="form-label">IBU:</label>
+        <input
+          type="number"
+          id="ibu"
+          class="form-control"
+          [(ngModel)]="cerveja.ibu"
+          name="ibu"
+          required
+        />
       </div>
-      <div class="form-group">
-        <label for="descricao">Descrição:</label>
-        <input type="text" id="descricao" [(ngModel)]="cerveja.descricao" name="descricao" required />
+      <div class="col-md-6 mb-3">
+        <label for="descricao" class="form-label">Descrição:</label>
+        <input
+          type="text"
+          id="descricao"
+          class="form-control"
+          [(ngModel)]="cerveja.descricao"
+          name="descricao"
+          required
+        />
       </div>
-      <div class="form-buttons">
-        <button type="submit">Adicionar Cerveja</button>
-        <button type="button" (click)="updateCerveja()">Atualizar Cerveja</button>
+      <div class="col-12 d-flex justify-content-between">
+        <button type="submit" class="btn btn-primary">Adicionar Cerveja</button>
+        <button
+          type="button"
+          class="btn btn-secondary"
+          (click)="updateCerveja()"
+        >
+          Atualizar Cerveja
+        </button>
       </div>
     </div>
   </form>
 
-  <table class="table table-responsive">
-    <thead>
+  <table class="table table-striped table-responsive mt-4">
+    <thead class="table-dark">
       <tr>
         <th>Nome</th>
         <th>Fabricante ID</th>
@@ -56,8 +108,18 @@
         <td>{{ cerveja.ibu }}</td>
         <td>{{ cerveja.descricao }}</td>
         <td>
-          <button (click)="editCerveja(cerveja)">Editar</button>
-          <button (click)="deleteCerveja(cerveja.id)">Deletar</button>
+          <button
+            class="btn btn-warning btn-sm me-2"
+            (click)="editCerveja(cerveja)"
+          >
+            Editar
+          </button>
+          <button
+            class="btn btn-danger btn-sm"
+            (click)="deleteCerveja(cerveja.id)"
+          >
+            Deletar
+          </button>
         </td>
       </tr>
     </tbody>

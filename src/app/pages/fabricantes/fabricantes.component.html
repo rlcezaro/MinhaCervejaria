@@ -1,115 +1,56 @@
-<div class="fabricantes-container">
-  <h1>Fabricantes</h1>
+<div class="container mt-5">
+  <h1 class="mb-4">Fabricantes</h1>
   <form (ngSubmit)="addFabricante()">
-    <div class="form-container">
-      <div class="form-group">
-        <label for="nome">Nome:</label>
-        <input
-          type="text"
-          id="nome"
-          [(ngModel)]="fabricante.nome"
-          name="nome"
-          required
-        />
+    <div class="row">
+      <div class="col-md-6 mb-3">
+        <label for="nome" class="form-label">Nome:</label>
+        <input type="text" id="nome" class="form-control" [(ngModel)]="fabricante.nome" name="nome" required />
       </div>
-      <div class="form-group">
-        <label for="cnpj">CNPJ:</label>
-        <input
-          type="text"
-          id="cnpj"
-          [(ngModel)]="fabricante.cnpj"
-          name="cnpj"
-          required
-        />
+      <div class="col-md-6 mb-3">
+        <label for="cnpj" class="form-label">CNPJ:</label>
+        <input type="text" id="cnpj" class="form-control" [(ngModel)]="fabricante.cnpj" name="cnpj" required />
       </div>
-      <div class="form-group">
-        <label for="endereco">Endereço:</label>
-        <input
-          type="text"
-          id="endereco"
-          [(ngModel)]="fabricante.endereco"
-          name="endereco"
-          required
-        />
+      <div class="col-md-6 mb-3">
+        <label for="endereco" class="form-label">Endereço:</label>
+        <input type="text" id="endereco" class="form-control" [(ngModel)]="fabricante.endereco" name="endereco" required />
       </div>
-      <div class="form-group">
-        <label for="cidade">Cidade:</label>
-        <input
-          type="text"
-          id="cidade"
-          [(ngModel)]="fabricante.cidade"
-          name="cidade"
-          required
-        />
+      <div class="col-md-6 mb-3">
+        <label for="cidade" class="form-label">Cidade:</label>
+        <input type="text" id="cidade" class="form-control" [(ngModel)]="fabricante.cidade" name="cidade" required />
       </div>
-      <div class="form-group">
-        <label for="estado">Estado:</label>
-        <input
-          type="text"
-          id="estado"
-          [(ngModel)]="fabricante.estado"
-          name="estado"
-          required
-        />
+      <div class="col-md-6 mb-3">
+        <label for="estado" class="form-label">Estado:</label>
+        <input type="text" id="estado" class="form-control" [(ngModel)]="fabricante.estado" name="estado" required />
       </div>
-      <div class="form-group">
-        <label for="cep">CEP:</label>
-        <input
-          type="text"
-          id="cep"
-          [(ngModel)]="fabricante.cep"
-          name="cep"
-          required
-        />
+      <div class="col-md-6 mb-3">
+        <label for="cep" class="form-label">CEP:</label>
+        <input type="text" id="cep" class="form-control" [(ngModel)]="fabricante.cep" name="cep" required />
       </div>
-      <div class="form-group">
-        <label for="telefone">Telefone:</label>
-        <input
-          type="text"
-          id="telefone"
-          [(ngModel)]="fabricante.telefone"
-          name="telefone"
-          required
-        />
+      <div class="col-md-6 mb-3">
+        <label for="telefone" class="form-label">Telefone:</label>
+        <input type="text" id="telefone" class="form-control" [(ngModel)]="fabricante.telefone" name="telefone" required />
       </div>
-      <div class="form-group">
-        <label for="email">Email:</label>
-        <input
-          type="email"
-          id="email"
-          [(ngModel)]="fabricante.email"
-          name="email"
-          required
-        />
+      <div class="col-md-6 mb-3">
+        <label for="email" class="form-label">Email:</label>
+        <input type="email" id="email" class="form-control" [(ngModel)]="fabricante.email" name="email" required />
       </div>
-      <div class="form-group">
-        <label for="status">Status:</label>
-        <input
-          type="checkbox"
-          id="status"
-          [(ngModel)]="fabricante.status"
-          name="status"
-        />
+      <div class="col-md-6 mb-3 form-check">
+        <input type="checkbox" id="status" class="form-check-input" [(ngModel)]="fabricante.status" name="status" />
+        <label for="status" class="form-check-label">Status</label>
       </div>
-      <div class="form-group">
-        <label for="observacoes">Observações:</label>
-        <textarea
-          id="observacoes"
-          [(ngModel)]="fabricante.observacoes"
-          name="observacoes"
-        ></textarea>
+      <div class="col-md-12 mb-3">
+        <label for="observacoes" class="form-label">Observações:</label>
+        <textarea id="observacoes" class="form-control" [(ngModel)]="fabricante.observacoes" name="observacoes"></textarea>
       </div>
-      <div class="form-buttons">
-        <button type="submit">Adicionar Fabricante</button>
-        <button type="button" (click)="updateFabricante()">
-          Atualizar Fabricante
-        </button>
+      <div class="col-12 d-flex justify-content-between">
+        <button type="submit" class="btn btn-primary">Adicionar Fabricante</button>
+        <button type="button" class="btn btn-secondary" (click)="updateFabricante()">Atualizar Fabricante</button>
       </div>
     </div>
   </form>
 
-  <table class="table table-responsive">
-    <thead>
+  <table class="table table-striped table-responsive mt-4">
+    <thead class="table-dark">
       <tr>
         <th>Nome</th>
         <th>CNPJ</th>
@@ -137,8 +78,8 @@
         <td>{{ fabricante.status ? "Ativo" : "Inativo" }}</td>
         <td>{{ fabricante.observacoes }}</td>
         <td>
-          <button (click)="editFabricante(fabricante)">Editar</button>
-          <button (click)="deleteFabricante(fabricante.id)">Deletar</button>
+          <button class="btn btn-warning btn-sm me-2" (click)="editFabricante(fabricante)">Editar</button>
+          <button class="btn btn-danger btn-sm" (click)="deleteFabricante(fabricante.id)">Deletar</button>
         </td>
       </tr>
     </tbody>
