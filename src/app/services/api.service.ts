@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { Cerveja } from '../models/cerveja.model';
 import { Fabricante } from '../models/fabricante.models';
 import { Cliente } from '../models/cliente.models';
+import { Estoque } from '../models/estoque.model';
 
 @Injectable({
   providedIn: 'root',
@@ -49,8 +50,20 @@ export class ApiService {
     return this.http.delete<void>(`${this.baseUrl}/fabricantes/${id}`);
   }
 
-  getEstoques(): Observable<any[]> {
-    return this.http.get<any[]>(`${this.baseUrl}/estoque`);
+  getEstoques(): Observable<Estoque[]> {
+    return this.http.get<Estoque[]>(`${this.baseUrl}/estoques`);
+  }
+
+  addEstoque(estoque: Estoque): Observable<Estoque> {
+    return this.http.post<Estoque>(`${this.baseUrl}/estoques`, estoque);
+  }
+
+  updateEstoque(id: string, estoque: Estoque): Observable<Estoque> {
+    return this.http.put<Estoque>(`${this.baseUrl}/estoques/${id}`, estoque);
+  }
+
+  deleteEstoque(id: string): Observable<void> {
+    return this.http.delete<void>(`${this.baseUrl}/estoques/${id}`);
   }
 
   addCliente(cliente: Cliente): Observable<Cliente> {
