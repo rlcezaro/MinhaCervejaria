@@ -5,6 +5,7 @@ import { Cerveja } from '../models/cerveja.model';
 import { Fabricante } from '../models/fabricante.models';
 import { Cliente } from '../models/cliente.models';
 import { Estoque } from '../models/estoque.model';
+import { Venda } from '../models/venda.models';
 
 @Injectable({
   providedIn: 'root',
@@ -84,6 +85,22 @@ export class ApiService {
 
   deleteCliente(id: number): Observable<void> {
     return this.http.delete<void>(`${this.baseUrl}/clientes/${id}`);
+  }
+
+  getVendas(): Observable<Venda[]> {
+    return this.http.get<Venda[]>(`${this.baseUrl}/vendas`);
+  }
+
+  addVenda(venda: Venda): Observable<Venda> {
+    return this.http.post<Venda>(`${this.baseUrl}/vendas`, venda);
+  }
+
+  updateVenda(id: string, venda: Venda): Observable<Venda> {
+    return this.http.put<Venda>(`${this.baseUrl}/vendas/${id}`, venda);
+  }
+
+  deleteVenda(id: string): Observable<void> {
+    return this.http.delete<void>(`${this.baseUrl}/vendas/${id}`);
   }
 
   // Outros métodos...

@@ -89,6 +89,7 @@ export class EstoqueComponent implements OnInit {
         if (index !== -1) {
           this.estoques[index] = updatedEstoque;
           this.estoque = this.resetEstoque();
+          this.loadEstoques(); // Reload the stock to ensure the latest data
         }
       });
   }

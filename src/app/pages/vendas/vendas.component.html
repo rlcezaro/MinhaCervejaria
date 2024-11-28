@@ -1,1 +1,77 @@
-<h2>Registro de Vendas</h2>
+<div class="container mt-5">
+  <h1 class="mb-4">Registro de Vendas</h1>
+  <form (ngSubmit)="addVenda()">
+    <div class="row">
+      <div class="col-md-6 mb-3">
+        <label for="clienteId" class="form-label">Cliente:</label>
+        <select id="clienteId" class="form-select" [(ngModel)]="venda.clienteId" name="clienteId" required>
+          <option *ngFor="let cliente of clientes" [value]="cliente.id">
+            {{ cliente.nome }}
+          </option>
+        </select>
+      </div>
+      <div class="col-md-6 mb-3">
+        <label for="cervejaId" class="form-label">Cerveja:</label>
+        <select id="cervejaId" class="form-select" [(ngModel)]="venda.cervejaId" name="cervejaId" required>
+          <option *ngFor="let cerveja of cervejas" [value]="cerveja.id">
+            {{ cerveja.nome }}
+          </option>
+        </select>
+      </div>
+      <div class="col-md-6 mb-3">
+        <label for="quantidade" class="form-label">Quantidade:</label>
+        <input type="number" id="quantidade" class="form-control" [(ngModel)]="venda.quantidade" name="quantidade" required />
+      </div>
+      <div class="col-md-6 mb-3">
+        <label for="dataVenda" class="form-label">Data da Venda:</label>
+        <input type="date" id="dataVenda" class="form-control" [(ngModel)]="venda.dataVenda" name="dataVenda" [value]="venda.dataVenda | date:'yyyy-MM-dd'" disabled />
+      </div>
+      <div class="col-md-6 mb-3">
+        <label for="valorTotal" class="form-label">Valor Total:</label>
+        <input type="number" id="valorTotal" class="form-control" [(ngModel)]="venda.valorTotal" name="valorTotal" required />
+      </div>
+      <div class="col-md-6 mb-3 form-check">
+        <input type="checkbox" id="status" class="form-check-input" [(ngModel)]="venda.status" name="status" />
+        <label for="status" class="form-check-label">Status</label>
+      </div>
+      <div class="col-md-12 mb-3">
+        <label for="observacoes" class="form-label">Observações:</label>
+        <textarea id="observacoes" class="form-control" [(ngModel)]="venda.observacoes" name="observacoes"></textarea>
+      </div>
+      <div class="col-12 d-flex justify-content-between">
+        <button type="submit" class="btn btn-primary">Adicionar Venda</button>
+        <button type="button" class="btn btn-secondary" (click)="updateVenda()">Atualizar Venda</button>
+      </div>
+    </div>
+  </form>
+
+  <table class="table table-striped table-responsive mt-4">
+    <thead class="table-dark">
+      <tr>
+        <th>Cliente</th>
+        <th>Cerveja</th>
+        <th>Quantidade</th>
+        <th>Data da Venda</th>
+        <th>Valor Total</th>
+        <th>Status</th>
+        <th>Observações</th>
+        <th>Ações</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let venda of vendas">
+        <td>{{ getClienteNome(venda.clienteId) }}</td>
+        <td>{{ getCervejaNome(venda.cervejaId) }}</td>
+        <td>{{ venda.quantidade }}</td>
+        <td>{{ venda.dataVenda | date:'dd/MM/yyyy' }}</td>
+        <td>{{ venda.valorTotal }}</td>
+        <td>{{ venda.status ? "Ativo" : "Inativo" }}</td>
+        <td>{{ venda.observacoes }}</td>
+        <td>
+          <button class="btn btn-warning btn-sm me-2" (click)="editVenda(venda)">Editar</button>
+          <button class="btn btn-danger btn-sm" (click)="deleteVenda(venda.id)">Deletar</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
