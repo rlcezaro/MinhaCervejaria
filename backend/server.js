@@ -457,7 +457,14 @@ app.post("/api/estoques", (req, res) => {
 
 //Rota para listar estoques
 app.get("/api/estoques", (req, res) => {
-  db.all("SELECT * FROM estoques", (err, rows) => {
+  const { cervejaId } = req.query;
+  let query = "SELECT * FROM estoques";
+  const params = [];
+  if (cervejaId) {
+    query += " WHERE cervejaId = ?";
+    params.push(cervejaId);
+  }
+  db.all(query, params, (err, rows) => {
     if (err) {
       return res.status(500).send(err.message);
     }
@@ -468,17 +475,10 @@ app.get("/api/estoques", (req, res) => {
 //Rota para editar estoques
 app.put("/api/estoques/:id", (req, res) => {
   const { id } = req.params;
-  const {
-    cervejaId,
-    quantidade,
-    dataEntrada,
-    dataValidade,
-    status,
-    observacoes,
-  } = req.body;
+  const { quantidade } = req.body;
   db.run(
-    "UPDATE estoques SET cervejaId = ?, quantidade = ?, dataEntrada = ?, dataValidade = ?, status = ?, observacoes = ? WHERE id = ?",
-    [cervejaId, quantidade, dataEntrada, dataValidade, status, observacoes, id],
+    "UPDATE estoques SET quantidade = ? WHERE id = ?",
+    [quantidade, id],
     function (err) {
       if (err) {
         return res.status(500).send(err.message);

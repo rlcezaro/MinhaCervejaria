@@ -68,16 +68,20 @@ export class VendasComponent implements OnInit {
   }
 
   addVenda() {
-    const estoque = this.estoques.find(e => e.cervejaId === this.venda.cervejaId);
-    if (estoque && estoque.quantidade >= this.venda.quantidade) {
-      this.apiService.addVenda(this.venda).subscribe((newVenda) => {
-        this.vendas.push(newVenda);
-        this.updateEstoqueQuantidade(estoque.id, estoque.quantidade - this.venda.quantidade);
-        this.venda = this.resetVenda();
-      });
-    } else {
-      alert('Quantidade insuficiente no estoque.');
-    }
+    this.apiService.getEstoqueByCervejaId(this.venda.cervejaId).subscribe((estoques) => {
+      const estoque = estoques.find(e => e.cervejaId === this.venda.cervejaId);
+      if (estoque && estoque.quantidade >= this.venda.quantidade) {
+        this.apiService.addVenda(this.venda).subscribe((newVenda) => {
+          this.vendas.push(newVenda);
+          this.apiService.updateEstoqueQuantidade(estoque.id, estoque.quantidade - this.venda.quantidade).subscribe(() => {
+            this.loadEstoques(); // Reload the stock to ensure the latest data
+          });
+          this.venda = this.resetVenda();
+        });
+      } else {
+        alert('Quantidade insuficiente no estoque.');
+      }
+    });
   }
 
   updateEstoqueQuantidade(id: number, quantidade: number) {

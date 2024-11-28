@@ -67,6 +67,14 @@ export class ApiService {
     return this.http.delete<void>(`${this.baseUrl}/estoques/${id}`);
   }
 
+  getEstoqueByCervejaId(cervejaId: number): Observable<Estoque[]> {
+    return this.http.get<Estoque[]>(`${this.baseUrl}/estoques?cervejaId=${cervejaId}`);
+  }
+
+  updateEstoqueQuantidade(id: number, quantidade: number): Observable<Estoque> {
+    return this.http.put<Estoque>(`${this.baseUrl}/estoques/${id}`, { quantidade });
+  }
+
   addCliente(cliente: Cliente): Observable<Cliente> {
     return this.http.post<Cliente>(`${this.baseUrl}/clientes`, cliente);
   }
